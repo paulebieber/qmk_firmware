@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [1] = LAYOUT_split_3x6_3(
   //-----------------------------------------------------.                    ,-----------------------------------------------------.
-RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, KC_MINS,               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
+RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, LSFT(KC_MINS),               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
   //|--------+--------+---(----+----)---+---!----+---?----|                    |----=---+----7---+----8---+---9----+----/----+---*----|
 TO(0),  LSFT(KC_4), RALT(KC_8), RALT(KC_9), KC_BSLS, LSFT(KC_2),               LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
   //|--------+--------+---[----+---]----+--------+--------|                    |----%---+----4---+----5---+----6---+----+---+---------|
@@ -58,9 +58,9 @@ KC_NUBS, LSFT(KC_NUBS), RALT(KC_7), RALT(KC_0), RALT(KC_RBRC), LSFT(KC_BSLS),   
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_TAB,  KC_F1,   KC_F2,   KC_F3,  KC_F4,   KC_F5,                        KC_MPLY, KC_MRWD, KC_UP, KC_MFFD, KC_MUTE, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|                    |---<----+--->----+--------+--------+--------+--------|
-      TO(0), KC_F6,    KC_F7,   KC_F8,  KC_F9,   KC_F10,                         KC_NO,  KC_LEFT, KC_DOWN , KC_RIGHT, KC_ENT, KC_NO,
+      TO(0), KC_F6,    KC_F7,   KC_F8,  KC_F9,   KC_F10,                         KC_MINS,  KC_LEFT, KC_DOWN , KC_RIGHT, KC_ENT, KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_F11,  KC_F12,  KC_NO,   KC_NO,   KC_NO,                        KC_NO,   KC_NO,  RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI,
+      KC_LCTL, KC_F11,  KC_F12,  KC_NO,   KC_NO,   KC_NO,                        RALT(KC_NUBS), RALT(KC_MINS), RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          KC_LGUI, KC_LSFT, KC_LALT,     KC_BSPC,  KC_SPC , KC_NO),
                                       //`--------------------------'  `--------------------------'
@@ -68,7 +68,7 @@ KC_NUBS, LSFT(KC_NUBS), RALT(KC_7), RALT(KC_0), RALT(KC_RBRC), LSFT(KC_BSLS),   
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN)},
+    [0] =  { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)},
     [1] =  { ENCODER_CCW_CW(KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN)},
     [2] =  { ENCODER_CCW_CW(RGB_VAI, RGB_VAD)},
 };
