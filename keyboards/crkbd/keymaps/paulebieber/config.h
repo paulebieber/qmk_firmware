@@ -47,3 +47,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
 #endif
+
+#define ENCODERS_PAD_A { }
+#define ENCODERS_PAD_B { }
+#define ENCODERS_PAD_A_RIGHT { B4 }
+#define ENCODERS_PAD_B_RIGHT { B6 }
+
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+#define NO_USB_STARTUP_CHECK
+
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+#undef RGBLIGHT_EFFECT_CHRISTMAS
