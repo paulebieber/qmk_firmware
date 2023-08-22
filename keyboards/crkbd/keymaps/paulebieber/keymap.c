@@ -14,9 +14,24 @@ enum {
   TRIPLE_HOLD = 6
 };
 
-//Tap dance enums
-enum {
+//Tap dance enums, custom keys
+enum{
   ALT_OSL1 = 0,
+};
+
+//Base layer switches
+enum BaseLayers{
+    CODING = 0,
+    GAMING,
+    MAC
+};
+
+enum BaseLayers currentBase;
+
+enum custom_keycodes {
+    KC_CODING = SAFE_RANGE,
+    KC_GAMING,
+    KC_MAC,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -26,43 +41,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+----ü---|
     KC_ESC, MT(MOD_LCTL, KC_A), KC_S, KC_D, KC_F,   KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,   KC_ENT, KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+----ö---|
-      KC_LCTL,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
+      KC_NO,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+---,----+---.----+----_---+----ä---|
                                         KC_LGUI, KC_LSFT, TD(ALT_OSL1),  KC_BSPC, KC_SPC, KC_MPLY),
                                       //`--------------------------'  `--------------------------'
 
   [1] = LAYOUT_split_3x6_3(
   //-----------------------------------------------------.                    ,-----------------------------------------------------.
-RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, LSFT(KC_MINS),               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
+RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, LSFT(KC_MINS),         LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
   //|--------+--------+---(----+----)---+---!----+---?----|                    |----=---+----7---+----8---+---9----+----/----+---*----|
-TO(0),  LSFT(KC_4), RALT(KC_8), RALT(KC_9), KC_BSLS, LSFT(KC_2),               LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
+TO(0), KC_LCTL, RALT(KC_8), RALT(KC_9), KC_BSLS, LSFT(KC_2), LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
   //|--------+--------+---[----+---]----+--------+--------|                    |----%---+----4---+----5---+----6---+----+---+---------|
 KC_NUBS, LSFT(KC_NUBS), RALT(KC_7), RALT(KC_0), RALT(KC_RBRC), LSFT(KC_BSLS),       KC_0,    KC_1,     KC_2,   KC_3,   KC_DOT,   KC_GRV,
   //|----<---+--->----+---{----+----}---+--------+---'----+--------|  |--------+--------+--------+--------+--------+--------+---------|
                                         TO(2), KC_LSFT, KC_RALT,       KC_BSPC, KC_SPC, KC_NO),
                                       //`--------------------------'  `--------------------------'
 
-// Works on mac, almost done, use as alternative layer!
-//  [1] = LAYOUT_split_3x6_3(
-//  //-----------------------------------------------------.                    ,-----------------------------------------------------.
-//RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, KC_MINS,               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
-//  //|--------+--------+---(----+----)---+---!----+---?----|                    |----=---+----7---+----8---+---9----+----/----+---*----|
-//TO(0),  LSFT(KC_4), RALT(KC_5), RALT(KC_6), KC_BSLS, LSFT(KC_2),               LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
-//  //|--------+--------+---[----+---]----+--------+--------|                    |----%---+----4---+----5---+----6---+----+---+---------|
-//KC_GRV, LSFT(KC_GRV), RALT(KC_8), RALT(KC_9), RALT(KC_RBRC), LSFT(KC_BSLS),       KC_0,    KC_1,     KC_2,   KC_3,   KC_DOT,   KC_NUBS,
-//  //|----<---+--->----+---{----+----}---+--------+---'----+--------|  |--------+--------+--------+--------+--------+--------+---------|
-//                                        TO(2), KC_LSFT, KC_RALT       KC_BSPC, KC_SPC, KC_NO),
-//                                      //`--------------------------'  `--------------------------'
-
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TAB,  KC_F1,   KC_F2,   KC_F3,  KC_F4,   KC_F5,                        KC_MPLY, KC_MRWD, KC_UP, KC_MFFD, KC_MUTE, KC_MINS,
-  //|--------+--------+--------+--------+--------+--------|                    |---<----+--->----+--------+--------+--------+--------|
-      TO(0), KC_F6,    KC_F7,   KC_F8,  KC_F9,   KC_F10,                         KC_MINS,  KC_LEFT, KC_DOWN , KC_RIGHT, KC_ENT, KC_NO,
+      KC_TAB,  KC_F1,   KC_F2,   KC_F3,  KC_F4,   KC_F5,                        KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_F11,  KC_F12,  KC_NO,   KC_NO,   KC_NO,                        RALT(KC_NUBS), RALT(KC_MINS), RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI,
+      TO(0), KC_LCTL,   KC_MRWD, KC_MPLY, KC_MFFD,  KC_MUTE,                    KC_LEFT, KC_DOWN , KC_UP, KC_RIGHT, KC_ENT, KC_F12,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_NO, LSFT(KC_4),  KC_MINS, KC_CODING,   KC_GAMING,   KC_MAC,             RALT(KC_NUBS), RALT(KC_MINS), RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         KC_LGUI, KC_LSFT, KC_LALT,     KC_BSPC,  KC_SPC , KC_NO),
+                                        KC_LGUI, KC_LSFT, KC_LALT,     KC_BSPC,  KC_SPC , KC_NO),
+                                      //`--------------------------'  `--------------------------'
+
+  //Gaming
+  [3] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_ESC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+----ü---|
+    KC_LSFT,     KC_A,   KC_S,    KC_D,      KC_F,   KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,   KC_UP, KC_ENT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+----ö---|
+    KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,    KC_M,  KC_COMM,  KC_LEFT, KC_DOWN, KC_RIGHT,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+---,----+---.----+----_---+----ä---|
+                                        KC_LCTL, KC_SPC, KC_SPC,       KC_LGUI, KC_CODING, KC_MPLY),
+                                      //`--------------------------'  `--------------------------'
+
+  //Mac special char layer
+  [4] = LAYOUT_split_3x6_3(
+  //-----------------------------------------------------.                    ,-----------------------------------------------------.
+RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, KC_MINS,               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
+  //|--------+--------+---(----+----)---+---!----+---?----|                    |----=---+----7---+----8---+---9----+----/----+---*----|
+TO(0),  MOD_LCTL, RALT(KC_5), RALT(KC_6), KC_BSLS, LSFT(KC_2),               LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
+  //|--------+--------+---[----+---]----+--------+--------|                    |----%---+----4---+----5---+----6---+----+---+---------|
+KC_GRV, LSFT(KC_GRV), RALT(KC_8), RALT(KC_9), RALT(KC_RBRC), LSFT(KC_BSLS),       KC_0,    KC_1,     KC_2,   KC_3,   KC_DOT,   KC_NUBS,
+  //|----<---+--->----+---{----+----}---+--------+---'----+--------|  |--------+--------+--------+--------+--------+--------+---------|
+                                        TO(2), KC_LSFT, KC_RALT,       KC_BSPC, KC_SPC, KC_NO),
                                       //`--------------------------'  `--------------------------'
 };
 
@@ -71,6 +98,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] =  { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)},
     [1] =  { ENCODER_CCW_CW(KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN)},
     [2] =  { ENCODER_CCW_CW(RGB_VAI, RGB_VAD)},
+    [3] =  { ENCODER_CCW_CW(KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN)},
+    [4] =  { ENCODER_CCW_CW(KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN)},
 };
 #endif
 
@@ -98,9 +127,19 @@ static tap alttap_state = {
 void alt_finished (tap_dance_state_t *state, void *user_data) {
   alttap_state.state = cur_dance(state);
   switch (alttap_state.state) {
-    case SINGLE_TAP: set_oneshot_layer(1, ONESHOT_START); clear_oneshot_layer_state(ONESHOT_PRESSED); break;
+    case SINGLE_TAP:
+            if(currentBase != MAC){
+                set_oneshot_layer(1, ONESHOT_START); clear_oneshot_layer_state(ONESHOT_PRESSED); break;
+            }else{
+                set_oneshot_layer(4, ONESHOT_START); clear_oneshot_layer_state(ONESHOT_PRESSED); break;
+            }
     case SINGLE_HOLD: register_code(KC_LALT); break;
-    case DOUBLE_TAP: set_oneshot_layer(1, ONESHOT_START); set_oneshot_layer(1, ONESHOT_PRESSED); break;
+    case DOUBLE_TAP:
+            if(currentBase != MAC){
+                set_oneshot_layer(1, ONESHOT_START); set_oneshot_layer(1, ONESHOT_PRESSED); break;
+            }else{
+                set_oneshot_layer(4, ONESHOT_START); set_oneshot_layer(4, ONESHOT_PRESSED); break;
+            }
     case DOUBLE_HOLD: register_code(KC_LALT); layer_on(1); break;
   }
 }
@@ -110,7 +149,12 @@ void alt_reset (tap_dance_state_t *state, void *user_data) {
     case SINGLE_TAP: break;
     case SINGLE_HOLD: unregister_code(KC_LALT); break;
     case DOUBLE_TAP: break;
-    case DOUBLE_HOLD: layer_off(1); unregister_code(KC_LALT); break;
+    case DOUBLE_HOLD:
+            if(currentBase != MAC){
+                layer_off(1); unregister_code(KC_LALT); break;
+            }else{
+                layer_off(4); unregister_code(KC_LALT); break;
+            }
   }
   alttap_state.state = 0;
 }
@@ -239,19 +283,31 @@ static void print_status_narrow(void) {
   oled_set_cursor(0, 0);
 
   /* Print current layer */
-  oled_write("LAYER", false);
+  switch(currentBase){
+      case CODING:
+          oled_write(" CODE", false);
+          break;
+      case GAMING:
+          oled_write(" GAME", false);
+          break;
+      case MAC:
+          oled_write(" MAC ", false);
+          break;
+  }
 
   oled_set_cursor(0, 1);
 
   switch (get_highest_layer(layer_state)) {
     case 0:
-      oled_write("Base ", false);
+    case 3:
+      oled_write(" Base ", false);
       break;
     case 2:
-      oled_write("Raise", false);
+      oled_write(" Syst", false);
       break;
     case 1:
-      oled_write("Lower", false);
+    case 4:
+      oled_write(" $&>!", false);
       break;
     default:
       oled_write("Undef", false);
@@ -283,11 +339,34 @@ bool oled_task_user(void) {
   return false;
 }
 
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-
-    if (record->event.pressed) {
-        set_keylog(keycode, record);
+bool process_record_user(uint16_t keycode, keyrecord_t *record){
+    switch (keycode) {
+        case KC_MAC:
+            if (record->event.pressed) {
+                currentBase = MAC;
+                set_single_persistent_default_layer(0);
+                layer_move(0);
+            }
+            return false;
+        case KC_GAMING:
+            if (record->event.pressed) {
+                currentBase = GAMING;
+                set_single_persistent_default_layer(3);
+                layer_move(3);
+            }
+            return false;
+        case KC_CODING:
+            if (record->event.pressed) {
+                currentBase = CODING;
+                set_single_persistent_default_layer(0);
+                layer_move(0);
+            }
+            return false;
     }
+    return true;
+}
+
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case KC_TRNS:
@@ -299,5 +378,14 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
         default:
             return true;
     }
+    if (record->event.pressed) {
+        set_keylog(keycode, record);
+    }
     return true;
+}
+
+void keyboard_pre_init_user(void){
+    currentBase = CODING;
+    set_single_persistent_default_layer(0);
+    layer_move(0);
 }
