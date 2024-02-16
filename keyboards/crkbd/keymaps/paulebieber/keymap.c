@@ -83,11 +83,11 @@ KC_NUBS, LSFT(KC_NUBS), RALT(KC_7), RALT(KC_0), RALT(KC_RBRC), LSFT(KC_BSLS),   
   //Mac special char layer
   [4] = LAYOUT_split_3x6_3(
   //-----------------------------------------------------.                    ,-----------------------------------------------------.
-RALT(KC_Q), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, KC_MINS,               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
+LALT(KC_L), LSFT(KC_6), LSFT(KC_8), LSFT(KC_9), KC_EXLM, LSFT(KC_MINS),               LSFT(KC_0), KC_7,   KC_8,   KC_9,   KC_PSLS, KC_PAST,
   //|--------+--------+---(----+----)---+---!----+---?----|                    |----=---+----7---+----8---+---9----+----/----+---*----|
 TO(0),  MOD_LCTL, RALT(KC_5), RALT(KC_6), KC_BSLS, LSFT(KC_2),               LSFT(KC_5), KC_4,   KC_5,   KC_6,   KC_PMNS,  KC_PPLS,
   //|--------+--------+---[----+---]----+--------+--------|                    |----%---+----4---+----5---+----6---+----+---+---------|
-KC_GRV, LSFT(KC_GRV), RALT(KC_8), RALT(KC_9), RALT(KC_RBRC), LSFT(KC_BSLS),       KC_0,    KC_1,     KC_2,   KC_3,   KC_DOT,   KC_NUBS,
+KC_GRV, LSFT(KC_GRV), RALT(KC_8), RALT(KC_9), LALT(KC_N), LSFT(KC_BSLS),       KC_0,    KC_1,     KC_2,   KC_3,   KC_DOT,   KC_NUBS,
   //|----<---+--->----+---{----+----}---+--------+---'----+--------|  |--------+--------+--------+--------+--------+--------+---------|
                                         TO(2), KC_LSFT, KC_RALT,       KC_BSPC, KC_SPC, KC_NO),
                                       //`--------------------------'  `--------------------------'
